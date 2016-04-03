@@ -39,7 +39,7 @@ class Entry(models.Model):
         blank = False,
     )
 
-    # A more detailed description of the category (not required)
+    # A more detailed description of the Entry (not required)
     description = models.CharField(
         max_length = settings.MAX_DESCRIPTION_LENGTH,
     )
