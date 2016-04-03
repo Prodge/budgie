@@ -128,7 +128,10 @@ STATIC_URL = '/static/'
 
 """
 
-# The max character length for description fields
+# Model Field length settings
 # Note: Changing this will require a migration - use with caution
 MAX_DESCRIPTION_LENGTH = 2000
+
+MAX_NAME_LENGTH = 200
+
 
