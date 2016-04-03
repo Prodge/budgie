@@ -6,6 +6,11 @@ urlpatterns = [
     url(
         r'^$',
         views.index,
-        name='index'
+        name = 'index'
+    ),
+    url(
+        r'^entry-list/',
+        views.entry_list,
+        name = 'entry_list'
     ),
 ]
