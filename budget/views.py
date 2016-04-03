@@ -12,6 +12,5 @@ def entry_list(request):
     context={
         'entries': Entry.objects.all()
     }
-    print Entry.objects.all()
 
     return render(request, template, context)
