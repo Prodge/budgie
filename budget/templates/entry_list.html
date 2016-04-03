@@ -1,0 +1,22 @@
+
+<title>Budgie - Entry Listing</title>
+<h2>Entry List Page</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Label
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>
+                    {{ entry.label }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -56,7 +56,9 @@ ROOT_URLCONF = 'budgie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'budgie/templates/')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
