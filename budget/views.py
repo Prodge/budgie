@@ -10,7 +10,8 @@ def entry_list(request):
     template = 'entry_list.html'
 
     context={
-        'entrys': Entry.objects.all()
+        'entries': Entry.objects.all()
     }
+    print Entry.objects.all()
 
     return render(request, template, context)

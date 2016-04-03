@@ -2,11 +2,26 @@
 <title>Budgie - Entry Listing</title>
 <h2>Entry List Page</h2>
 
-<table>
+<table border="1" width="100%">
     <thead>
         <tr>
             <th>
                 Label
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Essential
             </th>
         </tr>
     </thead>
@@ -15,6 +30,21 @@
             <tr>
                 <td>
                     {{ entry.label }}
+                </td>
+                <td>
+                    {{ entry.category.name }}
+                </td>
+                <td>
+                    {{ entry.flow_type }}
+                </td>
+                <td>
+                    {{ entry.description }}
+                </td>
+                <td>
+                    {{ entry.date }}
+                </td>
+                <td>
+                    {{ entry.essential }}
                 </td>
             </tr>
         {% endfor %}
