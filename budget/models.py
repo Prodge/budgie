@@ -49,7 +49,6 @@ class Entry(models.Model):
 
     # The date of the entry
     date = models.DateField(
-        auto_now_add = True,
         blank = False,
     )
 
