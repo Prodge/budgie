@@ -1,0 +1,14 @@
+
+<title>Budgie - Create Entry</title>
+<h2>Creat Entry Page</h2>
+
+<table>
+    {% for field in form %}
+        <tr>
+            <td>{{ field.label_tag }}</td>
+            <td>{{ field }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<button type="submit">Create</button>
