@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from tracker.models import Entry
-from tracker.forms import EntryForm
+from budget.models import Entry
+from budget.forms import EntryForm
 
 def index(request):
     template = 'index.html'
