@@ -2,13 +2,29 @@
 <title>Budgie - Create Entry</title>
 <h2>Creat Entry Page</h2>
 
-<table>
-    {% for field in form %}
-        <tr>
-            <td>{{ field.label_tag }}</td>
-            <td>{{ field }}</td>
-        </tr>
-    {% endfor %}
-</table>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {% if success %}
+            <th>
+                The form has successfully been saved
+            </th>
+        {% endif %}
+        {% if has_error %}
+            <th>
+                Please address the errors below.
+            </th>
+        {% endif %}
 
-<button type="submit">Create</button>
+        {% for field in form %}
+            <tr>
+                <td class="label">{{ field.label_tag }}</td>
+                <td class="field">{{ field }}</td>
+            </tr>
+            <tr>
+                <td class="error">{{ field.errors }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Submit</button>
+</form>
