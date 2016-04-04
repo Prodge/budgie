@@ -6,6 +6,10 @@ class Category(models.Model):
     '''
     The expense or income category
     '''
+
+    def __unicode__(self):
+        return u'{}'.format(self.name)
+
     # The category name (required)
     name = models.CharField(
         max_length = settings.MAX_NAME_LENGTH,
@@ -35,9 +39,17 @@ class Entry(models.Model):
         blank = False,
     )
 
+    # The cost of the expense or the amount of income
+    value = models.DecimalField(
+        blank = False,
+        default = 0.00,
+        decimal_places = 2,
+        max_digits = 20,
+    )
+
     # The date of the entry
     date = models.DateField(
-        auto_now = True,
+        auto_now_add = True,
         blank = False,
     )
 
