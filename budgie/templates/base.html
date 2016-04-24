@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- External resources -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
+
+    <!-- local resources -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
     <title>Budgie - {% block title %}Expense Tracker{% endblock %}</title>
 </head>
 
@@ -13,9 +18,17 @@
         {% block sidebar %}
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li><a href="{% url 'entry_create' %}">Create Entry</a></li>
         </ul>
         {% endblock %}
+    </div>
+
+    <div id="heading">
+        <h2>
+            {% block heading %}
+                Budgie
+            {% endblock %}
+        </h2>
     </div>
 
     <div id="content">

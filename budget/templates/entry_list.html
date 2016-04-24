@@ -1,52 +1,60 @@
+{% extends "base.html" %}
 
-<title>Budgie - Entry Listing</title>
+{% block headig %}
+    {% block title %}
+        Entry Listing
+    {% endblock %}
+{% endblock %}
+
 <h2>Entry List Page</h2>
 
-<table border="1" width="100%">
-    <thead>
-        <tr>
-            <th>
-                Label
-            </th>
-            <th>
-                Category
-            </th>
-            <th>
-                Type
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Date
-            </th>
-            <th>
-                Essential
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entry in entries %}
+{% block content %}
+    <table border="1" width="100%">
+        <thead>
             <tr>
-                <td>
-                    {{ entry.label }}
-                </td>
-                <td>
-                    {{ entry.category.name }}
-                </td>
-                <td>
-                    {{ entry.flow_type }}
-                </td>
-                <td>
-                    {{ entry.description }}
-                </td>
-                <td>
-                    {{ entry.date }}
-                </td>
-                <td>
-                    {{ entry.essential }}
-                </td>
+                <th>
+                    Label
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Essential
+                </th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>
+                        {{ entry.label }}
+                    </td>
+                    <td>
+                        {{ entry.category.name }}
+                    </td>
+                    <td>
+                        {{ entry.flow_type }}
+                    </td>
+                    <td>
+                        {{ entry.description }}
+                    </td>
+                    <td>
+                        {{ entry.date }}
+                    </td>
+                    <td>
+                        {{ entry.essential }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
