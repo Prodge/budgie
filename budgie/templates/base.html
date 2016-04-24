@@ -19,6 +19,7 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'entry_create' %}">Create Entry</a></li>
+            <li><a href="{% url 'entry_list' %}">View Entries</a></li>
         </ul>
         {% endblock %}
     </div>
@@ -29,10 +30,19 @@
                 Budgie
             {% endblock %}
         </h2>
+        <hr>
     </div>
 
     <div id="content">
         {% block content %}{% endblock %}
     </div>
 </body>
+<script>
+    // Set active page css
+    $('#sidebar ul li a').map(function(num, element){
+        if($(element).attr('href') == "{{ request.path }}"){
+            $(element).parent().addClass('active-page');
+        }
+    })
+</script>
 </html>

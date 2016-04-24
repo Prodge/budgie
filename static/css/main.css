@@ -2,18 +2,21 @@
  * Budgie main style
  */
 
-/* Layout formatting */
+/* Layout */
 
-body {
+html body {
     background-color: #F0F0F0;
+    margin: 0;
+    padding: 0;
 }
 
 #sidebar {
     position: fixed;
     padding-top: 5px;
     width: 250px;
-    /*height: 100%;*/
-    background-color: #B4B9C3;
+    height: 100%;
+    background-color: #647387;
+    color: #F0F0F0;
 }
 
 #heading {
@@ -37,11 +40,45 @@ body {
 /* Navigation */
 
 #sidebar ul {
-    padding: 5px;
+    padding-left: 10px;
+    list-style: none;
 }
 
-/* Text formatting */
+#sidebar ul li a {
+    display: inline-block;
+    width: 200px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: #F0F0F0;
+}
+
+#sidebar ul li:hover, #sidebar ul li.active-page {
+    background-color: #B4B9C3;
+}
+
+/* Tables */
+
+/* Text */
 
 h2 {
+    color: #647387;
+}
+
+a:link, a:visited {
     color: #333;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #666;
+}
+
+#heading hr {
+    background-color: #C8CDD2;
+    height: 1px;
+    border: 0;
+    margin-right: 30%;
 }
