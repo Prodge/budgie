@@ -7,6 +7,8 @@ from budget.forms import EntryForm
 def index(request):
     template = 'index.html'
 
+    context = {}
+
     return render(request, template, context)
 
 def entry_list(request):
