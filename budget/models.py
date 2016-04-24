@@ -8,7 +8,7 @@ class Category(models.Model):
     '''
 
     def __unicode__(self):
-        return u'{}'.format(self.name)
+        return unicode(self.name)
 
     # The category name (required)
     name = models.CharField(
