@@ -57,7 +57,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'budgie/templates/')
+            os.path.join(BASE_DIR, 'budgie/templates/'),
+            os.path.join(BASE_DIR, 'budget/templates/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

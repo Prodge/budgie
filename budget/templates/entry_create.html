@@ -1,10 +1,12 @@
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+{% extends "base.html" %}
 
-<title>Budgie - Create Entry</title>
+{% block title%}
+    Create Entry
+{% endblock %}
+
 <h2>Creat Entry Page</h2>
 
+{% block content %}
 <form method="POST">
     {% csrf_token %}
     <table>
@@ -37,3 +39,5 @@
         $('.datepicker').datepicker();
     });
 </script>
+
+{% endblock %}
