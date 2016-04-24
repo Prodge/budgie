@@ -1,9 +1,47 @@
-#sidebar{
-    position: fixed;
-    width: 250px;
-    height: 100%;
-    background-color: #ddd;
+/*
+ * Budgie main style
+ */
+
+/* Layout formatting */
+
+body {
+    background-color: #F0F0F0;
 }
-h2{
-    color: #eee;
+
+#sidebar {
+    position: fixed;
+    padding-top: 5px;
+    width: 250px;
+    /*height: 100%;*/
+    background-color: #B4B9C3;
+}
+
+#heading {
+    margin-left: 250px;
+    padding-top: 10px;
+    padding-left: 30px;
+    width: auto;
+    position: relative;
+}
+
+#content {
+    margin-left: 250px;
+    height: 100%;
+    width: auto;
+    position: relative;
+    padding: 20px;
+    overflow: auto;
+    z-index: 1;
+}
+
+/* Navigation */
+
+#sidebar ul {
+    padding: 5px;
+}
+
+/* Text formatting */
+
+h2 {
+    color: #333;
 }
