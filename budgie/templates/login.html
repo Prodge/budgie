@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- local resources -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <title>Budgie - login</title>
+</head>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {% if success %}
+                <th>
+                    The form has successfully been saved
+                </th>
+            {% endif %}
+            {% if has_error %}
+                <th>
+                    Please address the errors below.
+                </th>
+            {% endif %}
+
+            {% for field in form %}
+                <tr>
+                    <td class="label">{{ field.label_tag }}</td>
+                    <td class="field">{{ field }}</td>
+                </tr>
+                <tr>
+                    <td class="error">{{ field.errors }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</body>
