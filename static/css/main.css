@@ -6,6 +6,7 @@
 
 html body {
     background-color: #F0F0F0;
+    color: #3B3C3D;
     margin: 0;
     padding: 0;
 }
@@ -103,6 +104,10 @@ table.list th {
 
 h2 {
     color: #647387;
+}
+
+p {
+    color: #3B3C3D;
 }
 
 a:link, a:visited {
