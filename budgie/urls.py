@@ -25,5 +25,10 @@ urlpatterns = [
         name = 'login'
     ),
 
+    url(r'^logout/',
+        views.user_logout,
+        name = 'logout'
+    ),
+
     url(r'^budget/', include('budget.urls')),
 ]

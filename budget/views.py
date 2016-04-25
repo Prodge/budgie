@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from budget.models import Entry
 from budget.forms import EntryForm
 
+@login_required
 def home(request):
     template = 'index.html'
 
@@ -12,6 +13,7 @@ def home(request):
 
     return render(request, template, context)
 
+@login_required
 def entry_list(request):
     template = 'entry_list.html'
 
@@ -21,11 +23,13 @@ def entry_list(request):
 
     return render(request, template, context)
 
+@login_required
 def entry_edit(request):
     template = 'entry_edit.html'
 
     return render(request, template, context)
 
+@login_required
 def entry_create(request):
     template = 'entry_create.html'
     context = {}
