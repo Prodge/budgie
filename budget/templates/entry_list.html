@@ -7,11 +7,14 @@
 {% endblock %}
 
 {% block content %}
-    <table border="1" width="100%">
+    <table class="list">
         <thead>
             <tr>
                 <th>
                     Label
+                </th>
+                <th>
+                    Amount
                 </th>
                 <th>
                     Category
@@ -35,6 +38,9 @@
                 <tr>
                     <td>
                         {{ entry.label }}
+                    </td>
+                    <td>
+                        ${{ entry.value }}
                     </td>
                     <td>
                         {{ entry.category }}

@@ -60,13 +60,44 @@ html body {
 }
 
 /* Forms */
+form {
+    width: 350px;
+}
+form table{
+    width: 100%;
+}
+form input, form select{
+    width: 100%;
+    float: left;
+}
+
+form select {
+    margin-left: 5px;
+}
+
 form button {
     float: right;
-    margin: 10px;
     margin-top: 15px;
 }
 
+input[type="checkbox"] {
+    width: 20px;
+}
+
 /* Tables */
+table.list {
+    width: 90%;
+}
+table.list, table.list tr, table.list td, table.list th {
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C8CDD2;
+}
+
+table.list th {
+    background-color: #e3e3e3;
+}
 
 /* Text */
 
@@ -146,12 +177,18 @@ ul .error {
     background-color: #B4B9C3;
 }
 
+#login-box form {
+    width: 250px;
+    margin: auto;
+}
+
 /* Input boxes */
 input[type="text"], textarea, input[type="password"], input[type="number"] {
-    background-color: #F0F0F0;
+    background-color: #C8CDD2;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    border: none;
 }
 
 #heading hr {
