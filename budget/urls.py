@@ -5,8 +5,8 @@ from . import views
 urlpatterns = [
     url(
         r'^$',
-        views.index,
-        name = 'index'
+        views.home,
+        name = 'home'
     ),
     url(
         r'^entry-list/',

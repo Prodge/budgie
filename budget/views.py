@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from budget.models import Entry
 from budget.forms import EntryForm
 
-def index(request):
+def home(request):
     template = 'index.html'
 
     context = {}
@@ -22,7 +23,6 @@ def entry_list(request):
 
 def entry_edit(request):
     template = 'entry_edit.html'
-
 
     return render(request, template, context)
 
