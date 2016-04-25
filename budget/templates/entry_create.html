@@ -28,9 +28,11 @@ Creat Entry Page</h2>
                     <td class="label">{{ field.label_tag }}</td>
                     <td class="field">{{ field }}</td>
                 </tr>
-                <tr>
-                    <td class="error">{{ field.errors }}</td>
-                </tr>
+                {% if field.errors %}
+                    <tr>
+                        <td class="error">{{ field.errors }}</td>
+                    </tr>
+                {% endif %}
             {% endfor %}
         </table>
         <button type="submit">Submit</button>

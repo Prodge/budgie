@@ -59,6 +59,13 @@ html body {
     background-color: #B4B9C3;
 }
 
+/* Forms */
+form button {
+    float: right;
+    margin: 10px;
+    margin-top: 15px;
+}
+
 /* Tables */
 
 /* Text */
@@ -76,9 +83,69 @@ a:hover, a:active {
     color: #666;
 }
 
+/* Messages */
+.messages{
+    border: 1px;
+    border-color: #F0F0F0;
+    padding: 5px;
+}
+
+.error{
+    list-style: none;
+    background-color: #BF4A67;
+    color: #F0F0F0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+input[type="text"], textarea, input[type="password"] {
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
 #heading hr {
     background-color: #C8CDD2;
     height: 1px;
     border: 0;
     margin-right: 30%;
 }
+
+/* login Page */
+
+#login-box {
+    margin: auto;
+    width: 300px;
+    margin-top: 200px;
+    padding: 10px;
+    padding-bottom: 65px;
+    border-radius: 5px;
+    background-color: #647387;
+    color: #F0F0F0;
+}
+
+#login-box h2 {
+    color: #F0F0F0;
+    text-align: center;
+}
+
+#login-box button {
+    background-color: #C8CDD2;
+    border: none;
+    color: #647387;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+#login-box button:hover {
+    background-color: #B4B9C3;
+}
+

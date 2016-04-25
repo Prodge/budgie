@@ -4,7 +4,7 @@ from django.contrib import messages
 
 from budgie.forms import LoginForm
 
-def login(request):
+def user_login(request):
     template = 'login.html'
     context = {}
 
@@ -24,7 +24,7 @@ def login(request):
 
             # Maybe not return this one?
             # return request
-    else:
-        context['form'] = LoginForm()
+
+    context['form'] = LoginForm()
 
     return render(request, template, context)
