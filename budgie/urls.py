@@ -20,14 +20,19 @@ from budgie import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^login/',
+    url(r'^accounts/login/',
         views.user_login,
-        name = 'login'
+        name = 'user_login'
     ),
 
-    url(r'^logout/',
+    url(r'^accounts/logout/',
         views.user_logout,
-        name = 'logout'
+        name = 'user_logout'
+    ),
+
+    url(r'^$',
+        views.index,
+        name = 'index'
     ),
 
     url(r'^budget/', include('budget.urls')),
