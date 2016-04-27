@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- External resources -->
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-
-    <!-- local resources -->
     {% load staticfiles %}
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/jquery-ui/jquery-ui.js" %}"></script>
+
     <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "js/jquery-ui/jquery-ui.css" %}">
+
     <title>Budgie - {% block title %}Expense Tracker{% endblock %}</title>
 </head>
 
