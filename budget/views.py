@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -53,12 +53,12 @@ def entry_create(request):
     context = {}
 
     if request.method == 'POST':
-        form = EntryForm(request.POST)
+        form = EntryForm(request.POST, user = request.user)
         if form.is_valid():
             entry = form.save(commit = False)
             entry.user = request.user
             entry.save()
-            context['success'] = True
+            return redirect('entry_detail', entry_id = entry.id)
     else:
         form = EntryForm(user = request.user)
 
