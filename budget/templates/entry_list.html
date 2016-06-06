@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block heading %}
-    {% block title %}
-        Entry Listing
-    {% endblock %}
+  {% block title %}
+    Entry Listing
+  {% endblock %}
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
     <tbody>
       {% for entry in entries %}
         <tr>
-          <td>{{ entry.label }}</td>
+          <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
           <td>${{ entry.value }}</td>
           <td>{{ entry.category }}</td>
           <td>{{ entry.flow_type }}</td>

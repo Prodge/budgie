@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block heading %}
+  {% block title %}
+    Entry: {{ entry.label }}
+  {% endblock %}
+{% endblock %}
+
+{% block content %}
+  <a class="button" href="{% url 'entry_edit' entry.id %}">Edit</a>
+  <table class="detail">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Label</td>
+        <td>{{ entry.label }}</td>
+      </tr>
+      <tr>
+        <td>Value</td>
+        <td>${{ entry.value }}</td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>{{ entry.category }}</td>
+      </tr>
+      <tr>
+        <td>Type</td>
+        <td>{{ entry.flow_type }}</td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>{{ entry.description }}</td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td>{{ entry.date }}</td>
+      </tr>
+      <tr>
+        <td>Essential</td>
+        <td>{{ entry.essential }}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

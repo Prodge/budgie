@@ -89,14 +89,22 @@ input[type="checkbox"] {
 table.list {
     width: 90%;
 }
-table.list, table.list tr, table.list td, table.list th {
+table.detail {
+    width: 40%;
+}
+table.detail td:nth-child(1) {
+    background-color: #eaeaea;
+    font-weight: bold;
+    color: #4B4C4D;
+}
+table, table tr, table td, table th {
     border-collapse: collapse;
     border-style: solid;
     border-width: 1px;
     border-color: #C8CDD2;
 }
 
-table.list th {
+table th {
     background-color: #e3e3e3;
 }
 
@@ -146,6 +154,23 @@ ul .error {
     color: #F0F0F0;
     padding: 10px 40px;
     border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+    background-color: #C8CDD2;
+    border: none;
+    color: #647387;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.button:hover {
+    background-color: #B4B9C3;
 }
 
 /* login Page */

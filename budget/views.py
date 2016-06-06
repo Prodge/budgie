@@ -20,8 +20,22 @@ def entry_list(request):
     return render(request, template, context)
 
 @login_required
-def entry_edit(request):
-    template = 'entry_edit.html'
+def entry_detail(request, entry_id):
+    template = 'entry_detail.html'
+    entry = Entry.objects.get(id = entry_id)
+    context = {
+        'entry': entry,
+    }
+    return render(request, template, context)
+
+@login_required
+def entry_edit(request, entry_id):
+    template = 'entry_create.html'
+    entry = Entry.objects.get(id = entry_id)
+    context = {
+        'entry': entry,
+        'form': EntryForm(instance = entry),
+    }
     return render(request, template, context)
 
 @login_required
