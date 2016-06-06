@@ -80,6 +80,7 @@ class Entry(models.Model):
     # A more detailed description of the Entry (not required)
     description = models.CharField(
         max_length = settings.MAX_DESCRIPTION_LENGTH,
+        blank = True,
     )
 
     # Is the expense essential (required but not considered when processing income)
