@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block content %}
-  <a class="button" href="{% url 'entry_edit' entry.id %}">Edit</a>
   <table class="detail">
     <thead>
       <tr>
@@ -46,4 +45,5 @@
       </tr>
     </tbody>
   </table>
+  <a class="button" href="{% url 'entry_edit' entry.id %}">Edit</a>
 {% endblock %}
