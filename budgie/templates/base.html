@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load staticfiles %}
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/jquery-ui/jquery-ui.js" %}"></script>
+  <head>
+      {% load staticfiles %}
+      <script src="{% static "js/jquery.js" %}"></script>
+      <script src="{% static "js/jquery-ui/jquery-ui.js" %}"></script>
 
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" href="{% static "js/jquery-ui/jquery-ui.css" %}">
+      <link rel="stylesheet" href="{% static "css/main.css" %}">
+      <link rel="stylesheet" href="{% static "js/jquery-ui/jquery-ui.css" %}">
 
-    <title>Budgie - {% block title %}Expense Tracker{% endblock %}</title>
-</head>
+      <title>Budgie - {% block title %}Expense Tracker{% endblock %}</title>
+  </head>
 
-<body>
+  <body>
     <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'entry_create' %}">Create Entry</a></li>
-            <li><a href="{% url 'entry_list' %}">View Entries</a></li>
-            <li><a href="{% url 'user_logout' %}">Logout</a></li>
-        </ul>
-        {% endblock %}
+      {% block sidebar %}
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'entry_create' %}">Create Entry</a></li>
+        <li><a href="{% url 'entry_list' %}">View Entries</a></li>
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+      </ul>
+      {% endblock %}
     </div>
 
     <div id="heading">
-        <h2>
-            {% block heading %}
-                Budgie
-            {% endblock %}
-        </h2>
-        <hr>
+      <h2>
+        {% block heading %}
+          Budgie
+        {% endblock %}
+      </h2>
+      <hr>
     </div>
 
     <div id="content">
-		{% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% block content %}{% endblock %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
     </div>
-</body>
-<script>
+  </body>
+  <script>
     // Set active page css
     $('#sidebar ul li a').map(function(num, element){
-        if($(element).attr('href') == "{{ request.path }}"){
-            $(element).parent().addClass('active-page');
-        }
+      if($(element).attr('href') == "{{ request.path }}"){
+        $(element).parent().addClass('active-page');
+      }
     })
-</script>
+  </script>
 </html>
