@@ -17,6 +17,15 @@ class EntryForm(forms.ModelForm):
         widgets = {'date': DateInput(),}
 
 class CategoryForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(CategoryForm, self).__init__(*args, **kwargs)
+        categories = Category.objects.filter(user = user)
+        instance = kwargs.get('instance', None)
+        if instance:
+            categories = categories.exclude(id = instance.id)
+        self.fields['parent'].choices = [(cat.id, cat) for cat in categories]
+
     class Meta:
         model = Category
         fields = '__all__'

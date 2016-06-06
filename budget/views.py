@@ -92,12 +92,12 @@ def category_edit(request, category_id):
     }
 
     if request.method == 'POST':
-        form = CategoryForm(request.POST, instance = category)
+        form = CategoryForm(request.POST, instance = category, user = request.user)
         if form.is_valid():
             form.save()
             context['success'] = True
     else:
-        form = CategoryForm(instance = category)
+        form = CategoryForm(instance = category, user = request.user)
 
     context['form'] = form
     return render(request, template, context)
@@ -108,14 +108,14 @@ def category_create(request):
     context = {}
 
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, user = request.user)
         if form.is_valid():
             category = form.save(commit = False)
             category.user = request.user
             category.save()
             return redirect('category_detail', category_id = category.id)
     else:
-        form = CategoryForm()
+        form = CategoryForm(user = request.user)
 
     context['form'] = form
     context['has_error'] = not form.errors == {}
