@@ -44,7 +44,7 @@ urlpatterns = [
         name = 'category_edit'
     ),
     url(
-        r'^categoryy/list/$',
+        r'^category/list/$',
         views.category_list,
         name = 'category_list'
     ),
