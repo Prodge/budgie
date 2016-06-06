@@ -33,4 +33,19 @@ urlpatterns = [
         views.category_create,
         name = 'category_create'
     ),
+    url(
+        r'^category/(?P<category_id>\d+)/$',
+        views.category_detail,
+        name = 'category_detail'
+    ),
+    url(
+        r'^category/(?P<category_id>\d+)/edit/$',
+        views.category_edit,
+        name = 'category_edit'
+    ),
+    url(
+        r'^categoryy/list/$',
+        views.category_list,
+        name = 'category_list'
+    ),
 ]
