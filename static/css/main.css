@@ -86,6 +86,10 @@ input[type="checkbox"] {
 }
 
 /* Tables */
+form table, form table tr, form table td, form table th {
+    border-style: none;
+}
+
 table.list {
     width: 90%;
 }
