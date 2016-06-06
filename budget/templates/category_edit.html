@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block heading %}
+  {% block title %}
+    {% if entry %}
+      Editing: {{ entry }}
+    {% else %}
+      Create Category
+    {% endif %}
+  {% endblock %}
+{% endblock %}
+
+{% block content %}
+  {% include "form.html" %}
+{% endblock %}
