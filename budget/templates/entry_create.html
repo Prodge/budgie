@@ -9,38 +9,37 @@
 Creat Entry Page</h2>
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {% if success %}
-                <th>
-                    The form has successfully been saved
-                </th>
-            {% endif %}
-            {% if has_error %}
-                <th>
-                    Please address the errors below.
-                </th>
-            {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    {% if success %}
+      <p>
+        The form has successfully been saved
+      </p>
+    {% endif %}
+    {% if has_error %}
+      <p>
+          Please address the errors below.
+      </p>
+    {% endif %}
+    <table>
+      {% for field in form %}
+        <tr>
+          <td class="label">{{ field.label_tag }}</td>
+          <td class="field">{{ field }}</td>
+        </tr>
+        {% if field.errors %}
+          <tr>
+            <td colspan="100" class="error">{{ field.errors }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+    <button type="submit">Submit</button>
+  </form>
 
-            {% for field in form %}
-                <tr>
-                    <td class="label">{{ field.label_tag }}</td>
-                    <td class="field">{{ field }}</td>
-                </tr>
-                {% if field.errors %}
-                    <tr>
-                        <td colspan="100" class="error">{{ field.errors }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-        <button type="submit">Submit</button>
-    </form>
-
-    <script>
-        $(document).ready(function() {
-            $('.datepicker').datepicker();
-        });
-    </script>
+  <script>
+    $(document).ready(function() {
+      $('.datepicker').datepicker();
+    });
+  </script>
 {% endblock %}
