@@ -16,11 +16,9 @@ def home(request):
 @login_required
 def entry_list(request):
     template = 'entry_list.html'
-
     context = {
         'entries': Entry.objects.filter(user = request.user),
     }
-
     return render(request, template, context)
 
 @login_required
