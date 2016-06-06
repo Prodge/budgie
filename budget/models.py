@@ -19,6 +19,7 @@ class Category(models.Model):
     # A more detailed description of the category (not required)
     description = models.CharField(
         max_length = settings.MAX_DESCRIPTION_LENGTH,
+        blank = True,
     )
 
     parent = models.ForeignKey(
