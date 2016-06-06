@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from budget.models import Entry
+from budget.models import Entry, Category
 from budget.forms import EntryForm, CategoryForm
 
 @login_required
@@ -86,7 +86,7 @@ def category_detail(request, category_id):
 @login_required
 def category_edit(request, category_id):
     template = 'category_edit.html'
-    category = category.objects.get(id = category_id)
+    category = Category.objects.get(id = category_id)
     context = {
         'category': category
     }
