@@ -67,6 +67,41 @@ def entry_create(request):
 
     return render(request, template, context)
 
+def category_list(request):
+    template = 'category_list.html'
+    context = {
+        'categories': Category.objects.filter(user = request.user),
+    }
+    return render(request, template, context)
+
+@login_required
+def category_detail(request, category_id):
+    template = 'category_detail.html'
+    category = Category.objects.get(id = category_id)
+    context = {
+        'category': category
+    }
+    return render(request, template, context)
+
+@login_required
+def category_edit(request, category_id):
+    template = 'category_edit.html'
+    category = category.objects.get(id = category_id)
+    context = {
+        'category': category
+    }
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance = category)
+        if form.is_valid():
+            form.save()
+            context['success'] = True
+    else:
+        form = CategoryForm(instance = category)
+
+    context['form'] = form
+    return render(request, template, context)
+
 @login_required
 def category_create(request):
     template = 'category_edit.html'
