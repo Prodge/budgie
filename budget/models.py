@@ -29,6 +29,12 @@ class Category(models.Model):
         null=True,
     )
 
+    # Every entry is owned by a user
+    user = models.ForeignKey(
+        User,
+        on_delete = models.CASCADE
+    )
+
 
 class Entry(models.Model):
     '''
