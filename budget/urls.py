@@ -9,7 +9,7 @@ urlpatterns = [
         name = 'home'
     ),
     url(
-        r'^entry-list/$',
+        r'^entry/list/$',
         views.entry_list,
         name = 'entry_list'
     ),
@@ -27,5 +27,10 @@ urlpatterns = [
         r'^entry/create/$',
         views.entry_create,
         name = 'entry_create'
+    ),
+    url(
+        r'^category/create/$',
+        views.category_create,
+        name = 'category_create'
     ),
 ]
