@@ -40,7 +40,7 @@ def entry_create(request):
             entry.save()
             context['success'] = True
     else:
-        form = EntryForm()
+        form = EntryForm(user = request.user)
 
     context['form'] = form
     context['has_error'] = not form.errors == {}
