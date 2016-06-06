@@ -18,7 +18,7 @@ def entry_list(request):
     template = 'entry_list.html'
 
     context = {
-        'entries': Entry.objects.all(),
+        'entries': Entry.objects.filter(user = request.user),
     }
 
     return render(request, template, context)
@@ -37,7 +37,9 @@ def entry_create(request):
     if request.method == 'POST':
         form = EntryForm(request.POST)
         if form.is_valid():
-            form.save()
+            entry = form.save(commit = False)
+            entry.user = request.user
+            entry.save()
             context['success'] = True
     else:
         form = EntryForm()
