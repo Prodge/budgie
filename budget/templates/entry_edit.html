@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
 {% block heading %}
-    {% block title %}
-        Create Entry
-    {% endblock %}
+  {% block title %}
+    {% if entry %}
+      Editing: {{ entry }}
+    {% else %}
+      Create Entry
+    {% endif %}
+  {% endblock %}
 {% endblock %}
 
 Creat Entry Page</h2>

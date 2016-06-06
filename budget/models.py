@@ -7,7 +7,6 @@ class Category(models.Model):
     '''
     The expense or income category
     '''
-
     def __str__(self):
         return self.name
 
@@ -40,6 +39,9 @@ class Entry(models.Model):
     '''
     A journal entry
     '''
+    def __str__(self):
+        return self.label
+
     # A string describing the entry
     label = models.CharField(
         max_length = settings.MAX_NAME_LENGTH,

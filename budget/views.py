@@ -30,17 +30,26 @@ def entry_detail(request, entry_id):
 
 @login_required
 def entry_edit(request, entry_id):
-    template = 'entry_create.html'
+    template = 'entry_edit.html'
     entry = Entry.objects.get(id = entry_id)
     context = {
         'entry': entry,
-        'form': EntryForm(instance = entry),
     }
+
+    if request.method == 'POST':
+        form = EntryForm(request.POST, instance = entry)
+        if form.is_valid():
+            form.save()
+            context['success'] = True
+    else:
+        form = EntryForm(user = request.user, instance = entry)
+
+    context['form'] = form
     return render(request, template, context)
 
 @login_required
 def entry_create(request):
-    template = 'entry_create.html'
+    template = 'entry_edit.html'
     context = {}
 
     if request.method == 'POST':
