@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -78,3 +79,8 @@ class Entry(models.Model):
         default = False,
     )
 
+    # Every entry is owned by a user
+    user = models.ForeignKey(
+        User,
+        on_delete = models.CASCADE
+    )
