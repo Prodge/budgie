@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from budget.models import Entry
-from budget.forms import EntryForm
+from budget.forms import EntryForm, CategoryForm
 
 @login_required
 def home(request):
@@ -61,6 +61,26 @@ def entry_create(request):
             return redirect('entry_detail', entry_id = entry.id)
     else:
         form = EntryForm(user = request.user)
+
+    context['form'] = form
+    context['has_error'] = not form.errors == {}
+
+    return render(request, template, context)
+
+@login_required
+def category_create(request):
+    template = 'category_edit.html'
+    context = {}
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit = False)
+            category.user = request.user
+            category.save()
+            return redirect('category_detail', category_id = category.id)
+    else:
+        form = CategoryForm()
 
     context['form'] = form
     context['has_error'] = not form.errors == {}
