@@ -8,8 +8,8 @@ class Category(models.Model):
     The expense or income category
     '''
 
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return self.name
 
     # The category name (required)
     name = models.CharField(
