@@ -37,7 +37,7 @@ def entry_edit(request, entry_id):
     }
 
     if request.method == 'POST':
-        form = EntryForm(request.POST, instance = entry)
+        form = EntryForm(request.POST, instance = entry, user = request.user)
         if form.is_valid():
             form.save()
             context['success'] = True
