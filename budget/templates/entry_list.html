@@ -7,58 +7,30 @@
 {% endblock %}
 
 {% block content %}
-    <table class="list">
-        <thead>
-            <tr>
-                <th>
-                    Label
-                </th>
-                <th>
-                    Amount
-                </th>
-                <th>
-                    Category
-                </th>
-                <th>
-                    Type
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Essential
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in entries %}
-                <tr>
-                    <td>
-                        {{ entry.label }}
-                    </td>
-                    <td>
-                        ${{ entry.value }}
-                    </td>
-                    <td>
-                        {{ entry.category.name }}
-                    </td>
-                    <td>
-                        {{ entry.flow_type }}
-                    </td>
-                    <td>
-                        {{ entry.description }}
-                    </td>
-                    <td>
-                        {{ entry.date }}
-                    </td>
-                    <td>
-                        {{ entry.essential }}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Essential</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in entries %}
+        <tr>
+          <td>{{ entry.label }}</td>
+          <td>${{ entry.value }}</td>
+          <td>{{ entry.category.name }}</td>
+          <td>{{ entry.flow_type }}</td>
+          <td>{{ entry.description }}</td>
+          <td>{{ entry.date }}</td>
+          <td>{{ entry.essential }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
