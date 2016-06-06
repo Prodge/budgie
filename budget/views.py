@@ -8,9 +8,7 @@ from budget.forms import EntryForm
 @login_required
 def home(request):
     template = 'index.html'
-
     context = {}
-
     return render(request, template, context)
 
 @login_required
@@ -24,7 +22,6 @@ def entry_list(request):
 @login_required
 def entry_edit(request):
     template = 'entry_edit.html'
-
     return render(request, template, context)
 
 @login_required
