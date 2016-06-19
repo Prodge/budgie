@@ -17,9 +17,15 @@ cd ...
 make venv
 make migrate
 make createsuperuser
-# Optionally create more users from the admin interface with the superuser login
+# Optionally create more users from the admin interface with the superuser login (localhost:8000/admin)
+```
 
-# Optional if you wish to import data from a csv, you will need to modify the script slightly
+### Import your own tracking from csv
+Optional if you wish to import data from a csv.
+You will need to modify the script slightly.
+The input file is defined in the script.
+The script can be found in /scripts/import_from_csv.py
+```
 make import_from_csv
 ```
 
