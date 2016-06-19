@@ -12,8 +12,7 @@ apt-get python3 python3-pip
 ### Setup Virtualenv and Database
 ```
 sudo pip install virtualenv
-git clone ...
-cd ...
+git clone https://github.com/Prodge/budgie.git; cd budgie
 make venv
 make migrate
 make createsuperuser
