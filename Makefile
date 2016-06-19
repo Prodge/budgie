@@ -17,3 +17,9 @@ migrate: venv
 
 makemigrations: venv
 	$(PYTHON) manage.py makemigrations
+
+createsuperuser: venv
+	$(PYTHON) manage.py createsuperuser
+
+syncdb: venv
+	$(PYTHON) manage.py syncdb
