@@ -19,22 +19,25 @@ make createsuperuser
 ```
 Optionally create more users from the admin interface with the superuser login (localhost:8000/admin)
 
-### Import your own tracking from csv
-If you wish to import data from a csv a script and make target are provided.
-
-You will need to modify the script slightly.
-The input csv file is defined in the script which can be found in /scripts/import_from_csv.py
-
-Run the following make target when you are ready to import.
-```
-make import_from_csv
-```
-
-### Run the server.
+### Run the server
 ```
 # Listen on localhost
 make runserver
 
 # Listen on all interfaces
 make prodserver
+```
+
+### Import your own tracking from csv
+If you wish to import data from a csv a script and make target are provided.
+
+You will need to modify the script slightly.
+The input csv file is defined in the script which can be found in:
+```
+/scripts/import_from_csv.py
+```
+
+Run the following make target when you are ready to import.
+```
+make import_from_csv
 ```
