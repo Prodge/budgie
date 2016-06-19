@@ -23,7 +23,9 @@ Optionally create more users from the admin interface with the superuser login (
 If you wish to import data from a csv a script and make target are provided.
 
 You will need to modify the script slightly.
-The inpui csv file is defined in the script which can be found in /scripts/import_from_csv.py
+The input csv file is defined in the script which can be found in /scripts/import_from_csv.py
+
+Run the following make target when you are ready to import.
 ```
 make import_from_csv
 ```
