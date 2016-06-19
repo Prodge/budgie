@@ -29,7 +29,7 @@ def get_input_document(input_document_name):
     '''
     Takes a filename as an input and returns a 2D array of the csv
     '''
-    with open(input_document_name, 'rb') as input_file:
+    with open(input_document_name) as input_file:
         input_document_reader = csv.reader(
             input_file,
             delimiter = delimiter_character,
@@ -47,9 +47,16 @@ def create_categories(categories):
     '''
     Creates category objects given a list of category name strings
     '''
+    user = get_user()
     for category in categories:
-        category = Category.get_or_create(name = category, user = get_user())
+        category, _ = Category.objects.get_or_create(name = category, user = user)
         category.save()
+
+def get_date(date_string):
+    try:
+        return datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    except ValueError:
+        return datetime.datetime.strptime(date_string, "%d/%m/%y").date()
 
 def create_entries(entries):
     '''
@@ -60,8 +67,8 @@ def create_entries(entries):
         essential = entry[columns['essential']] == 'y'
         entry = Entry(
             label = entry[columns['label']],
-            value = entry[columns['amount']],
-            date = datetime.datetime.strptime(entry[columns['date']], "%d/%m/%Y").date(),
+            value = float(entry[columns['amount']].replace('$', '').replace(',', '')),
+            date = get_date(entry[columns['date']]),
             flow_type = flow_type,
             category = Category.objects.get(name = entry[columns['category']]),
             essential = essential,
@@ -70,9 +77,13 @@ def create_entries(entries):
         entry.save()
 
 def main():
-    input_csv = '~/downloads/journal.csv'
+    print('Starting')
+    input_csv = get_input_document('/home/prodge/downloads/journal.csv')
     entries = input_csv[4:]
+    print('Importing Categories')
     create_categories([entry[columns['category']] for entry in entries])
+    print('Importing Entries')
     create_entries(entries)
+    print('Finished')
 
 main()
