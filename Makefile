@@ -24,8 +24,5 @@ makemigrations: venv
 createsuperuser: venv
 	$(PYTHON) manage.py createsuperuser
 
-syncdb: venv
-	$(PYTHON) manage.py syncdb
-
 import_from_csv: venv
 	$(PYTHON) manage.py runscript import_from_csv
