@@ -15,7 +15,7 @@ def home(request):
 def entry_list(request):
     template = 'entry_list.html'
     context = {
-        'entries': Entry.objects.filter(user = request.user),
+        'entries': Entry.objects.filter(user = request.user).order_by('-date'),
     }
     return render(request, template, context)
 
