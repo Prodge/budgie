@@ -12,6 +12,9 @@ clear_venv:
 runserver: venv
 	$(PYTHON) manage.py runserver_plus
 
+prodserver: venv
+	$(PYTHON) manage.py runserver 0.0.0.0:8000
+
 shell: venv
 	$(PYTHON) manage.py shell_plus
 
