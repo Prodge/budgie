@@ -16,8 +16,8 @@ git clone https://github.com/Prodge/budgie.git; cd budgie
 make venv
 make migrate
 make createsuperuser
-# Optionally create more users from the admin interface with the superuser login (localhost:8000/admin)
 ```
+Optionally create more users from the admin interface with the superuser login (localhost:8000/admin)
 
 ### Import your own tracking from csv
 Optional if you wish to import data from a csv.
