@@ -3,7 +3,7 @@ PYTHON = venv/bin/python
 PIP = venv/bin/pip
 
 venv:
-	virtualenv venv;
+	virtualenv -p /usr/bin/python3 venv;
 	$(PIP) install -r ./requirements.txt
 
 clear_venv:
