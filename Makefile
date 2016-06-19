@@ -10,7 +10,7 @@ clear_venv:
 	rm -rf ./venv
 
 runserver: venv
-	$(PYTHON) manage.py runserver
+	$(PYTHON) manage.py runserver_plus
 
 shell: venv
 	$(PYTHON) manage.py shell
