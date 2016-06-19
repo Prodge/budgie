@@ -1,6 +1,7 @@
 *.swp
 *.sqlite3
 venv/
+.pull_prod_db
 
 
 # Byte-compiled / optimized / DLL files
