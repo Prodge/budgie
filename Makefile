@@ -6,7 +6,7 @@ venv:
 	virtualenv venv;
 	$(PIP) install -r ./requirements.txt
 
-clear-venv:
+clear_venv:
 	rm -rf ./venv
 
 runserver: venv
@@ -26,3 +26,6 @@ createsuperuser: venv
 
 syncdb: venv
 	$(PYTHON) manage.py syncdb
+
+import_from_csv: venv
+	$(PYTHON) manage.py runscript import_from_csv
