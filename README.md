@@ -4,6 +4,8 @@ A Django based Expense tracker.
 
 To run budgie.
 
+must have python3 and pip for python3 installed
+sudo pip install virtualenv
 git clone ...
 cd ...
 make venv
