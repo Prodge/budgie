@@ -13,7 +13,7 @@ runserver: venv
 	$(PYTHON) manage.py runserver_plus
 
 shell: venv
-	$(PYTHON) manage.py shell
+	$(PYTHON) manage.py shell_plus
 
 migrate: venv
 	$(PYTHON) manage.py migrate
