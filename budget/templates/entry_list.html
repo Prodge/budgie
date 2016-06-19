@@ -24,7 +24,7 @@
         <tr>
           <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
           <td>${{ entry.value }}</td>
-          <td>{{ entry.category }}</td>
+          <td><a href={% url 'category_detail' entry.category.id %}>{{ entry.category }}</a></td>
           <td>{{ entry.flow_type }}</td>
           <td>{{ entry.description }}</td>
           <td>{{ entry.date }}</td>
