@@ -12,6 +12,9 @@ clear-venv:
 runserver: venv
 	$(PYTHON) manage.py runserver
 
+shell: venv
+	$(PYTHON) manage.py shell
+
 migrate: venv
 	$(PYTHON) manage.py migrate
 
