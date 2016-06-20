@@ -67,6 +67,11 @@ form {
 form table{
     width: 100%;
 }
+
+.list_form {
+    width: 100%;
+}
+
 form input, form select{
     width: 100%;
     float: left;
@@ -79,6 +84,11 @@ form select {
 form button {
     float: right;
     margin-top: 15px;
+}
+
+.list_form button {
+    float: left;
+    margin-top: 0px;
 }
 
 input[type="checkbox"] {
