@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block content %}
-  <form method="POST">
+  <form class="list_form" method="POST">
     {% csrf_token %}
     {% if success %}
-      <p id="success_message">Entries have successfully been deleted.</p>
+      <p id="success_message" class="success">Entries have successfully been deleted.</p>
     {% endif %}
-    <button id="delete_btn" type="submit">Delete Selected</button>
+    <button class="button" id="delete_btn" type="submit">Delete Selected</button>
     <table class="list">
       <thead>
         <tr>

@@ -1,14 +1,10 @@
 <form method="POST">
   {% csrf_token %}
   {% if success %}
-    <p>
-      The form has successfully been saved
-    </p>
+    <p class="success">The form has successfully been saved.</p>
   {% endif %}
   {% if has_error %}
-    <p>
-        Please address the errors below.
-    </p>
+    <p class="error">Please address the errors below.</p>
   {% endif %}
   <table>
     {% for field in form %}
@@ -25,4 +21,3 @@
   </table>
   <button type="submit">Submit</button>
 </form>
-
