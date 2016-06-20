@@ -67,6 +67,7 @@ def entry_create(request):
 
     return render(request, template, context)
 
+@login_required
 def category_list(request):
     template = 'category_list.html'
     context = {
