@@ -16,4 +16,33 @@ $(document).ready(function() {
       e.preventDefault();
     }
   });
+
+
+  /*
+    Highlight rows while mouse is hovering over
+  */
+  var current_colour = '';
+  $('form.list_form tbody tr').mouseenter(function(e){
+    var row = $(e.currentTarget);
+    current_colour = row.css('background-color');
+    row.css('background-color', '#ddd');
+  }).mouseleave(function(e){
+    var row = $(e.currentTarget);
+    row.css('background-color', current_colour);
+  });
+
+
+  /*
+    Select a rows checkbox when the row is clicked
+  */
+  $('form.list_form tbody tr td').click(function(e){
+    var checkbox = $(e.currentTarget).parent().children().children().filter('input')
+    if(! $(e.currentTarget).children().is('[type=checkbox]')){
+      if(checkbox.is(':checked')){
+        checkbox.prop( "checked", false );
+      }else{
+        checkbox.prop( "checked", true );
+      }
+    }
+  });
 });
