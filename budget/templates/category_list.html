@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block heading %}
   {% block title %}
@@ -6,30 +7,43 @@
   {% endblock %}
 {% endblock %}
 
+{% block extrahead %}
+  <script src="{% static "js/budgie/list_views.js" %}"></script>
+{% endblock %}
+
 {% block content %}
-  <a class="button" href="{% url 'category_create' %}">New Category</a>
-  <table class="list">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Parent</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if categories %}
-        {% for category in categories %}
-          <tr>
-            <td><a href={% url 'category_detail' category.id %}>{{ category.name }}</a></td>
-            <td>{{ category.description }}</td>
-            <td>{{ category.parent }}</td>
-          </tr>
-        {% endfor %}
-      {% else %}
+  <form class="list_form" method="POST">
+    {% csrf_token %}
+    {% if success %}
+      <p id="success_message" class="success">Categories have successfully been deleted.</p>
+    {% endif %}
+    <button class="button" id="delete_btn" type="submit">Delete Selected</button>
+    <a class="button" href="{% url 'category_create' %}">New Category</a>
+    <table class="list">
+      <thead>
         <tr>
-          <td style="text-align: center;" colspan="3">There are no categories to display.</td>
+          <th>Select</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parent</th>
         </tr>
-      {% endif %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% if categories %}
+          {% for category in categories %}
+            <tr>
+              <td><input type="checkbox" name="{{ category.id }}"/></td>
+              <td><a href={% url 'category_detail' category.id %}>{{ category.name }}</a></td>
+              <td>{{ category.description }}</td>
+              <td>{{ category.parent }}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td style="text-align: center;" colspan="3">There are no categories to display.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </form>
 {% endblock %}

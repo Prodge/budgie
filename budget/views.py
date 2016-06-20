@@ -73,9 +73,12 @@ def entry_create(request):
 @login_required
 def category_list(request):
     template = 'category_list.html'
-    context = {
-        'categories': Category.objects.filter(user = request.user),
-    }
+    context = {}
+    if request.POST:
+        category_ids = [int(category_id) for category_id, state in dict(request.POST).items() if state == ['on']]
+        Category.objects.filter(id__in = category_ids).delete()
+        context['success'] = True
+    context['categories'] = Category.objects.filter(user = request.user)
     return render(request, template, context)
 
 @login_required
