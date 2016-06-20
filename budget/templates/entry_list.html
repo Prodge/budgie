@@ -6,6 +6,10 @@
   {% endblock %}
 {% endblock %}
 
+{% block extrahead %}
+  <script src="{% static "js/budgie/list_views.js" %}"></script>
+{% endblock %}
+
 {% block content %}
   <form class="list_form" method="POST">
     {% csrf_token %}
@@ -49,23 +53,4 @@
     </table>
   </form>
 
-  <script>
-  /*
-  Hide the success message after a few seconds
-  */
-  var delay_time = 2000;
-  var animation_time = 500;
-  $('#success_message').delay(delay_time).hide(animation_time);
-  </script>
-
-  <script>
-  /*
-  Show alert when delete is clicked but no entries are selected
-  */
-  $('#delete_btn').click(function(){
-    if($('tbody td input[type=checkbox]:checked').length == 0){
-      alert("Please select one or more entries to delete.")
-    }
-  });
-  </script>
 {% endblock %}
