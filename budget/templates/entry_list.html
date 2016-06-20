@@ -20,17 +20,23 @@
       </tr>
     </thead>
     <tbody>
-      {% for entry in entries %}
+      {% if entries %}
+        {% for entry in entries %}
+          <tr>
+            <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
+            <td>${{ entry.value }}</td>
+            <td><a href={% url 'category_detail' entry.category.id %}>{{ entry.category }}</a></td>
+            <td>{{ entry.flow_type }}</td>
+            <td>{{ entry.description }}</td>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.essential }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
         <tr>
-          <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
-          <td>${{ entry.value }}</td>
-          <td><a href={% url 'category_detail' entry.category.id %}>{{ entry.category }}</a></td>
-          <td>{{ entry.flow_type }}</td>
-          <td>{{ entry.description }}</td>
-          <td>{{ entry.date }}</td>
-          <td>{{ entry.essential }}</td>
+          <td style="text-align: center;" colspan="7">There are no entries to display.</td>
         </tr>
-      {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 {% endblock %}
