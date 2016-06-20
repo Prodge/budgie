@@ -10,9 +10,10 @@ $(document).ready(function() {
   /*
     Show alert when delete is clicked but no entries are selected
   */
-  $('#delete_btn').click(function(){
+  $('form.list_form').submit(function(e){
     if($('tbody td input[type=checkbox]:checked').length == 0){
-      alert("Please select one or more entries to delete.")
+      alert("Please select one or more rows to delete.");
+      e.preventDefault();
     }
   });
 });
