@@ -12,4 +12,10 @@
 
 {% block content %}
   {% include "form.html" %}
+
+  <script>
+    $(document).ready(function() {
+      $('.datepicker').datepicker();
+    });
+  </script>
 {% endblock %}
