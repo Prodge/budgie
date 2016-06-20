@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -81,12 +83,27 @@ def category_list(request):
     context['categories'] = Category.objects.filter(user = request.user)
     return render(request, template, context)
 
+def get_amount_spent(entries):
+    return sum([float(entry.value) for entry in entries])
+
 @login_required
 def category_detail(request, category_id):
     template = 'category_detail.html'
     category = Category.objects.get(id = category_id)
+    entries = Entry.objects.filter(category = category)
+    today = datetime.date.today()
+    spendings = {
+        'forever': get_amount_spent(entries),
+        'week': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 7))),
+        'month': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 30))),
+        'year': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 365))),
+    }
+    spendings['average_week_over_month'] = spendings['month'] / (30 / 7)
+    spendings['average_week_over_year'] = spendings['year'] / (365 / 7)
+    spendings['average_month_over_year'] = spendings['year'] / 12
     context = {
-        'category': category
+        'category': category,
+        'spendings': spendings,
     }
     return render(request, template, context)
 

@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+  <a class="button" href="{% url 'category_edit' category.id %}">Edit Category</a>
+  <h2>{{ category }} details</h4>
   <table class="detail">
     <thead>
       <tr>
@@ -29,5 +31,44 @@
       </tr>
     </tbody>
   </table>
-  <a class="button" href="{% url 'category_edit' category.id %}">Edit Category</a>
+
+  <h2>{{ category }} expenditure</h4>
+  <table class="detail">
+    <thead>
+      <tr>
+        <th>Time Period</th>
+        <th>Amount Spent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Forever</td>
+        <td>${{ spendings.forever | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Week</td>
+        <td>${{ spendings.week | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Month</td>
+        <td>${{ spendings.month | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Year</td>
+        <td>${{ spendings.year | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Avg. week over month.</td>
+        <td>${{ spendings.average_week_over_month  | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Avg. week over year.</td>
+        <td>${{ spendings.average_week_over_year | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td>Avg. month over year.</td>
+        <td>${{ spendings.average_month_over_year | floatformat:2 }}</td>
+      </tr>
+    </tbody>
+  </table>
 {% endblock %}
