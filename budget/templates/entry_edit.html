@@ -15,7 +15,16 @@
 
   <script>
     $(document).ready(function() {
-      $('.datepicker').datepicker();
+      var datepicker = $('.datepicker');
+      // Init Datepicker
+      datepicker.datepicker();
+
+      // Fill date with todays date
+      var today = new Date();
+      var day = today.getDate();
+      var month = today.getMonth()+1;
+      var year = today.getFullYear();
+      datepicker.val(month + '/' + day + '/' + year);
     });
   </script>
 {% endblock %}
