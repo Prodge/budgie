@@ -7,36 +7,65 @@
 {% endblock %}
 
 {% block content %}
-  <table class="list">
-    <thead>
-      <tr>
-        <th>Label</th>
-        <th>Amount</th>
-        <th>Category</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Essential</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if entries %}
-        {% for entry in entries %}
-          <tr>
-            <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
-            <td>${{ entry.value }}</td>
-            <td><a href={% url 'category_detail' entry.category.id %}>{{ entry.category }}</a></td>
-            <td>{{ entry.flow_type }}</td>
-            <td>{{ entry.description }}</td>
-            <td>{{ entry.date }}</td>
-            <td>{{ entry.essential }}</td>
-          </tr>
-        {% endfor %}
-      {% else %}
+  <form method="POST">
+    {% csrf_token %}
+    {% if success %}
+      <p id="success_message">Entries have successfully been deleted.</p>
+    {% endif %}
+    <button id="delete_btn" type="submit">Delete Selected</button>
+    <table class="list">
+      <thead>
         <tr>
-          <td style="text-align: center;" colspan="7">There are no entries to display.</td>
+          <th>Select</th>
+          <th>Label</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Essential</th>
         </tr>
-      {% endif %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% if entries %}
+          {% for entry in entries %}
+            <tr>
+              <td><input type="checkbox" name="{{ entry.id }}"/></td>
+              <td><a href={% url 'entry_detail' entry.id %}>{{ entry.label }}</a></td>
+              <td>${{ entry.value }}</td>
+              <td><a href={% url 'category_detail' entry.category.id %}>{{ entry.category }}</a></td>
+              <td>{{ entry.flow_type }}</td>
+              <td>{{ entry.description }}</td>
+              <td>{{ entry.date }}</td>
+              <td>{{ entry.essential }}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td style="text-align: center;" colspan="8">There are no entries to display.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </form>
+
+  <script>
+  /*
+  Hide the success message after a few seconds
+  */
+  var delay_time = 2000;
+  var animation_time = 500;
+  $('#success_message').delay(delay_time).hide(animation_time);
+  </script>
+
+  <script>
+  /*
+  Show alert when delete is clicked but no entries are selected
+  */
+  $('#delete_btn').click(function(){
+    if($('tbody td input[type=checkbox]:checked').length == 0){
+      alert("Please select one or more entries to delete.")
+    }
+  });
+  </script>
 {% endblock %}
