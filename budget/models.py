@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 
 class Category(models.Model):
@@ -60,6 +61,11 @@ class Entry(models.Model):
     # The date of the entry
     date = models.DateField(
         blank = False,
+    )
+
+    # The date-time created, used for sorting
+    date_created = models.DateTimeField(
+        auto_now_add = True,
     )
 
     # Is the entry an expense or income
