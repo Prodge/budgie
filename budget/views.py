@@ -21,7 +21,7 @@ def entry_list(request):
         entry_ids = [int(entry_id) for entry_id, state in dict(request.POST).items() if state == ['on']]
         Entry.objects.filter(id__in = entry_ids).delete()
         context['success'] = True
-    context['entries'] = Entry.objects.filter(user = request.user).order_by('-date')
+    context['entries'] = Entry.objects.filter(user = request.user).order_by('-date', '-date_created')
     return render(request, template, context)
 
 @login_required
