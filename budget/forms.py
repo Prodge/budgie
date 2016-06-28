@@ -9,6 +9,7 @@ class EntryForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super(EntryForm, self).__init__(*args, **kwargs)
         self.fields['category'].choices = [(cat.id, cat) for cat in Category.objects.filter(user = user)]
+        self.fields['value'].widget.attrs['step'] = 0.5
 
     class Meta:
         model = Entry
