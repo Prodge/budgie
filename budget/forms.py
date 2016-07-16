@@ -17,15 +17,17 @@ class EntryForm(forms.ModelForm):
         exclude = ('user', )
         widgets = {'date': DateInput(),}
 
+def get_parent_choices_list(instance):
+        categories = Category.objects.filter(user = user)
+        if instance:
+            categories = categories.exclude(id = instance.id)
+        return [(cat.id, cat) for cat in categories]
+
 class CategoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super(CategoryForm, self).__init__(*args, **kwargs)
-        categories = Category.objects.filter(user = user)
-        instance = kwargs.get('instance', None)
-        if instance:
-            categories = categories.exclude(id = instance.id)
-        self.fields['parent'].choices = [(cat.id, cat) for cat in categories]
+        self.fields['parent'].choices = get_parent_choices_list(kwargs.get('instance', None))
 
     class Meta:
         model = Category
