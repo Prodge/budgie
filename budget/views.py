@@ -111,7 +111,7 @@ def category_list(request):
         category_ids = [int(category_id) for category_id, state in dict(request.POST).items() if state == ['on']]
         Category.objects.filter(id__in = category_ids).delete()
         context['success'] = True
-    context['categories'] = Category.objects.filter(user = request.user)
+    context['categories'] = Category.objects.filter(user = request.user).order_by('name')
     return render(request, template, context)
 
 def get_category_summary(category):
