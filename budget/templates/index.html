@@ -7,8 +7,16 @@
 {% endblock %}
 
 {% block content %}
+  <p>Weclome to budgie!</p>
+  <h3>Your Spending Summary</h3>
   <p>
-    Weclome to budget!
+    In the past week you spent <b>${{ spendings.week | floatformat:2 }}</b> compared to your average of <b>${{ spendings.average_week | floatformat:2 }}</b>.
+    {% if spendings.week < spendings.average_week %}
+      Nice saving!
+    {% else %}
+      That's higher than average.
+    {% endif %}
   </p>
+  <p>In the past month you spent <b>${{ spendings.month | floatformat:2 }}</b> compared to your average of <b>${{ spendings.average_month | floatformat:2 }}</b>.</p>
 
 {% endblock %}

@@ -7,10 +7,41 @@ from django.contrib.auth.decorators import login_required
 from budget.models import Entry, Category
 from budget.forms import EntryForm, CategoryForm
 
+def get_amount_spent(entries):
+    return sum([float(entry.value) for entry in entries if entry.flow_type != Entry.INCOME])
+
+def get_earliest_entry_date(entries):
+    return min([entry.date for entry in entries])
+
+def get_average_spent_over_period(entries, period):
+    today = datetime.date.today()
+    earliest_entry = get_earliest_entry_date(entries)
+    days_since_first_entry = (today - earliest_entry).days
+    segments = days_since_first_entry / period
+    return get_amount_spent(entries) / segments
+
+def filter_entries_to_period(entries, period):
+    today = datetime.date.today()
+    return entries.filter(date__gte = today - datetime.timedelta(days = period))
+
+def get_amount_spent_over_period(entries, period):
+    return get_amount_spent(filter_entries_to_period(entries, period))
+
+def get_home_page_summary(entries):
+    return {
+        'week': get_amount_spent_over_period(entries, 7),
+        'average_week': get_average_spent_over_period(entries, 7),
+        'month': get_amount_spent_over_period(entries, 30),
+        'average_month': get_average_spent_over_period(entries, 30),
+    }
+
 @login_required
 def home(request):
     template = 'index.html'
-    context = {}
+    entries = Entry.objects.filter(user = request.user)
+    context = {
+        'spendings': get_home_page_summary(entries)
+    }
     return render(request, template, context)
 
 @login_required
@@ -83,17 +114,14 @@ def category_list(request):
     context['categories'] = Category.objects.filter(user = request.user)
     return render(request, template, context)
 
-def get_amount_spent(entries):
-    return sum([float(entry.value) for entry in entries])
-
 def get_category_summary(category):
     entries = Entry.objects.filter(category = category)
     today = datetime.date.today()
     summary = {
         'forever': get_amount_spent(entries),
-        'week': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 7))),
-        'month': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 30))),
-        'year': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 365))),
+        'week': get_amount_spent_over_period(entries, 7),
+        'month': get_amount_spent_over_period(entries, 30),
+        'year': get_amount_spent_over_period(entries, 365),
     }
     summary['average_week_over_month'] = summary['month'] / (30 / 7)
     summary['average_week_over_year'] = summary['year'] / (365 / 7)

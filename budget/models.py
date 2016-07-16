@@ -69,10 +69,12 @@ class Entry(models.Model):
     )
 
     # Is the entry an expense or income
+    INCOME = 'income'
+    EXPENSE = 'expense'
     flow_type = models.CharField(
         choices = (
-            ('income', 'Income'),
-            ('expense', 'Expense'),
+            (INCOME, 'Income'),
+            (EXPENSE, 'Expense'),
         ),
         max_length = 50,
         default = 'expense',
