@@ -86,24 +86,27 @@ def category_list(request):
 def get_amount_spent(entries):
     return sum([float(entry.value) for entry in entries])
 
-@login_required
-def category_detail(request, category_id):
-    template = 'category_detail.html'
-    category = Category.objects.get(id = category_id)
+def get_category_summary(category):
     entries = Entry.objects.filter(category = category)
     today = datetime.date.today()
-    spendings = {
+    summary = {
         'forever': get_amount_spent(entries),
         'week': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 7))),
         'month': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 30))),
         'year': get_amount_spent(entries.filter(date__gte = today - datetime.timedelta(days = 365))),
     }
-    spendings['average_week_over_month'] = spendings['month'] / (30 / 7)
-    spendings['average_week_over_year'] = spendings['year'] / (365 / 7)
-    spendings['average_month_over_year'] = spendings['year'] / 12
+    summary['average_week_over_month'] = summary['month'] / (30 / 7)
+    summary['average_week_over_year'] = summary['year'] / (365 / 7)
+    summary['average_month_over_year'] = summary['year'] / 12
+    return summary
+
+@login_required
+def category_detail(request, category_id):
+    template = 'category_detail.html'
+    category = Category.objects.get(id = category_id)
     context = {
         'category': category,
-        'spendings': spendings,
+        'spendings': get_category_summary(category),
     }
     return render(request, template, context)
 
