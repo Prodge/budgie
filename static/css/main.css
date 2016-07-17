@@ -96,6 +96,10 @@ input[type="checkbox"] {
 }
 
 /* Tables */
+table.markup-table, table.markup-table tr, table.markup-table td{
+    border-style: none;
+}
+
 form table, form table tr, form table td, form table th {
     border-style: none;
 }

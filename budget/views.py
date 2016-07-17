@@ -1,4 +1,7 @@
 import datetime
+import json
+
+from collections import OrderedDict
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -34,6 +37,31 @@ def get_home_page_summary(entries):
         'month': get_amount_spent_over_period(entries, 30),
         'average_month': get_average_spent_over_period(entries, 30),
     }
+
+def get_user_entries(user):
+    return Entry.objects.filter(user=user)
+
+def get_entry_occurances(entries):
+    return {entry.label: entries.filter(label=entry.label).count() for entry in entries}
+
+def get_sorted_entry_occurances(entries):
+    return sorted(get_entry_occurances(entries).items(), key=lambda x: x[1], reverse=True)
+
+def get_most_frequent_entries(entries, num):
+    '''
+    Returns a list of the most recent entry for each of the most common entry labels
+    '''
+    return [entries.filter(label = entry[0]).latest('id') for entry in get_sorted_entry_occurances(entries)[:num]]
+
+def get_entry_json_data(entry):
+    return json.dumps({
+        'label': entry.label,
+        'value': float(entry.value),
+        'flow_type': entry.flow_type,
+        'category': entry.category.id,
+        'essential': entry.essential,
+        'description': entry.description,
+    })
 
 @login_required
 def home(request):
@@ -96,6 +124,10 @@ def entry_create(request):
             entry.save()
             return redirect('entry_detail', entry_id = entry.id)
     else:
+        context['frequent_entries'] = [(entry, get_entry_json_data(entry)) for entry in
+                get_most_frequent_entries(
+                    filter_entries_to_period(
+                        get_user_entries(request.user), 60), 10)] # most frequent 10 in past 60 days # TODO make this a setting
         form = EntryForm(user = request.user)
 
     context['form'] = form

@@ -11,12 +11,55 @@
 {% endblock %}
 
 {% block content %}
-  {% include "form.html" %}
+  <table class="markup-table">
+    <tr>
+      <td>
+        {% include "form.html" %}
+      </td>
+
+      <td valign="top" style="padding-left: 80px">
+        {% if frequent_entries %}
+          <div>
+          <h3>Apply a Template</h3>
+          {% for entry, json in frequent_entries %}
+            <div>
+              <p name="template-entry">{{entry.label}}</p>
+              <div hidden="hidden" id="entry-data-{{entry.label}}">{{ json }}</div>
+            </div>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
 
   <script>
+    // Apply templates to the form
+    $(document).ready(function(){
+      $('[name="template-entry"]').click(function(e){
+        var p_tag = e.originalEvent.originalTarget;
+        var entry_data = JSON.parse(p_tag.parentElement.lastElementChild.firstChild.data);
+        $.each(entry_data, function(field, value){
+          var field = $('#id_' + field);
+          if (field.is(':checkbox')){
+            field.prop("checked", value);
+          }else{
+            field.val(value);
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>
+    // Prevent prifilling with 0 so it doesn't have to be cleared
+    $('#id_value').val('');
+  </script>
+
+  <script>
+      // Init Datepicker
     $(document).ready(function() {
       var datepicker = $('.datepicker');
-      // Init Datepicker
       datepicker.datepicker();
 
       // Fill date with todays date
