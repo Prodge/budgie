@@ -8,7 +8,7 @@ class EntryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super(EntryForm, self).__init__(*args, **kwargs)
-        self.fields['category'].choices = [(cat.id, cat) for cat in Category.objects.filter(user = user)]
+        self.fields['category'].choices = [(cat.id, cat) for cat in Category.objects.filter(user = user).order_by('name')]
 
     class Meta:
         model = Entry
@@ -17,7 +17,7 @@ class EntryForm(forms.ModelForm):
         widgets = {'date': DateInput(),}
 
 def get_parent_choices_list(instance, user):
-    categories = Category.objects.filter(user = user)
+    categories = Category.objects.filter(user = user).order_by('name')
     if instance:
         categories = categories.exclude(id = instance.id)
     return [("", "--")] + [(cat.id, cat) for cat in categories]
