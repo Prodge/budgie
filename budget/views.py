@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 from budget.models import Entry, Category
 from budget.forms import EntryForm, CategoryForm
 
-def get_amount_spent(entries):
-    return sum([float(entry.value) for entry in entries if entry.flow_type != Entry.INCOME])
+def get_total_value(entries):
+    return sum([float(entry.value) for entry in entries])
 
 def get_earliest_entry_date(entries):
     return min([entry.date for entry in entries])
@@ -21,21 +21,32 @@ def get_average_spent_over_period(entries, period):
     earliest_entry = get_earliest_entry_date(entries)
     days_since_first_entry = (today - earliest_entry).days
     segments = days_since_first_entry / period
-    return get_amount_spent(entries) / segments
+    return get_total_value(entries) / segments
 
 def filter_entries_to_period(entries, period):
     today = datetime.date.today()
     return entries.filter(date__gte = today - datetime.timedelta(days = period))
 
-def get_amount_spent_over_period(entries, period):
-    return get_amount_spent(filter_entries_to_period(entries, period))
+def get_value_over_period(entries, period):
+    return get_total_value(filter_entries_to_period(entries, period))
 
-def get_home_page_summary(entries):
+def get_spending_summary(entries):
+    entries = entries.filter(flow_type = Entry.EXPENSE)
     return {
-        'week': get_amount_spent_over_period(entries, 7),
+        'week': get_value_over_period(entries, 7),
         'average_week': get_average_spent_over_period(entries, 7),
-        'month': get_amount_spent_over_period(entries, 30),
+        'month': get_value_over_period(entries, 30),
         'average_month': get_average_spent_over_period(entries, 30),
+    }
+
+def get_income_summary(entries):
+    entries = entries.filter(flow_type = Entry.INCOME)
+    return {
+        'year': get_value_over_period(entries, 360),
+        'month': get_value_over_period(entries, 30),
+        'week': get_value_over_period(entries, 7),
+        'years_monthly_budget': get_value_over_period(entries, 365) / 12,
+        'months_weekly_budget': get_value_over_period(entries, 30) / (30/7),
     }
 
 def get_user_entries(user):
@@ -67,8 +78,11 @@ def get_entry_json_data(entry):
 def home(request):
     template = 'index.html'
     entries = Entry.objects.filter(user = request.user)
+    spending_summary = get_spending_summary(entries)
+    income_summary = get_income_summary(entries)
     context = {
-        'spendings': get_home_page_summary(entries)
+        'spendings': spending_summary,
+        'income': income_summary,
     }
     return render(request, template, context)
 

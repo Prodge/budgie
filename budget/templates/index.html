@@ -7,16 +7,46 @@
 {% endblock %}
 
 {% block content %}
-  <p>Weclome to budgie!</p>
+  <h3>Your Budget</h3>
+  <p>This years monthly budget: <b>${{ income.years_monthly_budget | floatformat:2 }}</b></p>
+  <p>This months weekly budget: <b>${{ income.months_weekly_budget | floatformat:2 }}</b></p>
+
+  <hr>
+
   <h3>Your Spending Summary</h3>
   <p>
-    In the past week you spent <b>${{ spendings.week | floatformat:2 }}</b> compared to your average of <b>${{ spendings.average_week | floatformat:2 }}</b>.
+    In the past week you spent
+    <b>${{ spendings.week | floatformat:2 }}</b>
+    compared to your average of
+    <b>${{ spendings.average_week | floatformat:2 }}</b>
+    and your budget of
+    <b>${{ income.months_weekly_budget | floatformat:2 }}</b>.
     {% if spendings.week < spendings.average_week %}
       Nice saving!
     {% else %}
-      That's higher than average.
+      That's higher than average
+    {% endif %}
+    and
+    {% if spendings.week < income.months_weekly_budget %}
+      you're under budget!
+    {% else %}
+      that's above your budget.
     {% endif %}
   </p>
-  <p>In the past month you spent <b>${{ spendings.month | floatformat:2 }}</b> compared to your average of <b>${{ spendings.average_month | floatformat:2 }}</b>.</p>
+
+  <p>
+    In the past month you spent
+    <b>${{ spendings.month | floatformat:2 }}</b>
+    compared to your average of
+    <b>${{ spendings.average_month | floatformat:2 }}</b>
+    and your budget of
+    <b>${{ income.years_monthly_budget | floatformat:2 }}</b>.
+  </p>
+
+  <hr>
+
+  <h3>Your Income Summary</h3>
+  <p>Income this year: <b>${{ income.year | floatformat:2 }}</b></p>
+  <p>Income this month: <b>${{ income.month | floatformat:2 }}</b></p>
 
 {% endblock %}
