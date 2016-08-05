@@ -2,6 +2,25 @@
  * Budgie main style
  */
 
+/* budget status indicator */
+
+.status_circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    line-height: 100px;
+    color: #eee;
+    text-align: center;
+    margin: 10px 50px;
+}
+
+.status_box {
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    display: inline-block;
+}
+
 /* Layout */
 
 html body {

@@ -7,6 +7,19 @@
 {% endblock %}
 
 {% block content %}
+  <div class="status_box">
+    This Week
+    <div class="status_circle" style="background: {{ budget_status.week.colour }};">
+      {{ budget_status.week.description }}
+    </div>
+  </div>
+  <div class="status_box">
+    This Month
+    <div class="status_circle" style="background: {{ budget_status.month.colour }};">
+      {{ budget_status.month.description }}
+    </div>
+  </div>
+
   <h3>Your Budget</h3>
   <p>This years monthly budget: <b>${{ income.years_monthly_budget | floatformat:2 }}</b></p>
   <p>This months weekly budget: <b>${{ income.months_weekly_budget | floatformat:2 }}</b></p>

@@ -64,6 +64,32 @@ def get_most_frequent_entries(entries, num):
     '''
     return [entries.filter(label = entry[0]).latest('id') for entry in get_sorted_entry_occurances(entries)[:num]]
 
+def get_budget_status(spending_summary, income_summary):
+    '''
+    Green: you're under your budget and under your average.
+    Blue: You're under your budget but not your average.
+    Orange: your within 25% of your budget.
+    Red: you're over 25% of your budget
+    '''
+    status = {
+        'week': {'colour': '#b00', 'description': 'Over'},
+        'month': {'colour': '#b00', 'description': 'Over'},
+    }
+
+    for period in status.keys():
+        spent = spending_summary[period]
+        budget_key = 'years_monthly_budget' if period == 'month' else 'months_weekly_budget'
+        budget = income_summary[budget_key]
+        average = spending_summary['average_{}'.format(period)]
+        if spent < budget:
+            if spent < average:
+                status[period] = {'colour': '#0b0', 'description': 'Good'}
+            else:
+                status[period] = {'colour': '#00b', 'description': 'Ok'}
+        if spent > budget * 0.75 and spent < budget * 1.25:
+            status[period] = {'colour': '#E59400', 'description': 'Close'}
+    return status
+
 def get_entry_json_data(entry):
     return json.dumps({
         'label': entry.label,
@@ -83,6 +109,7 @@ def home(request):
     context = {
         'spendings': spending_summary,
         'income': income_summary,
+        'budget_status': get_budget_status(spending_summary, income_summary),
     }
     return render(request, template, context)
 
