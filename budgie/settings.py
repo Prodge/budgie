@@ -60,6 +60,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'budgie/templates/'),
             os.path.join(BASE_DIR, 'budget/templates/'),
+            os.path.join(BASE_DIR, 'stats/templates/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
