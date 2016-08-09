@@ -36,4 +36,5 @@ urlpatterns = [
     ),
 
     url(r'^budget/', include('budget.urls')),
+    url(r'^stats/', include('stats.urls')),
 ]
