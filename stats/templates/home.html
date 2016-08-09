@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block heading %}
+  {% block title %}
+    Budgie Statistics
+  {% endblock %}
+{% endblock %}
+
+{% block content %}
+  <h3>Savings over Time</h3>
+  {{ savings_over_time | safe }}
+
+{% endblock %}
