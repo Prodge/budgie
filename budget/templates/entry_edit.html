@@ -51,23 +51,27 @@
     });
   </script>
 
-  <script>
-    // Prevent prifilling with 0 so it doesn't have to be cleared
-    $('#id_value').val('');
-  </script>
+  {% if entry %}
+    <script>
+      // Prevent prifilling with 0 so it doesn't have to be cleared
+      $('#id_value').val('');
+    </script>
+  {% endif %}
 
-  <script>
-      // Init Datepicker
-    $(document).ready(function() {
-      var datepicker = $('.datepicker');
-      datepicker.datepicker();
+    <script>
+        // Init Datepicker
+      $(document).ready(function() {
+        var datepicker = $('.datepicker');
+        datepicker.datepicker();
 
-      // Fill date with todays date
-      var today = new Date();
-      var day = today.getDate();
-      var month = today.getMonth()+1;
-      var year = today.getFullYear();
-      datepicker.val(month + '/' + day + '/' + year);
-    });
-  </script>
+        {% if entry %}
+          // Fill date with todays date
+          var today = new Date();
+          var day = today.getDate();
+          var month = today.getMonth()+1;
+          var year = today.getFullYear();
+          datepicker.val(month + '/' + day + '/' + year);
+        {% endif %}
+      });
+    </script>
 {% endblock %}
