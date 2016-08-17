@@ -188,13 +188,13 @@ def category_list(request):
     return render(request, template, context)
 
 def get_category_summary(category):
-    entries = Entry.objects.filter(category = category)
+    entries = Entry.objects.filter(category = category, flow_type=Entry.EXPENSE)
     today = datetime.date.today()
     summary = {
-        'forever': get_amount_spent(entries),
-        'week': get_amount_spent_over_period(entries, 7),
-        'month': get_amount_spent_over_period(entries, 30),
-        'year': get_amount_spent_over_period(entries, 365),
+        'forever': get_total_value(entries),
+        'week': get_value_over_period(entries, 7),
+        'month': get_value_over_period(entries, 30),
+        'year': get_value_over_period(entries, 365),
     }
     summary['average_week_over_month'] = summary['month'] / (30 / 7)
     summary['average_week_over_year'] = summary['year'] / (365 / 7)
