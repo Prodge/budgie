@@ -51,7 +51,7 @@
     });
   </script>
 
-  {% if entry %}
+  {% if not entry %}
     <script>
       // Prevent prifilling with 0 so it doesn't have to be cleared
       $('#id_value').val('');
@@ -64,7 +64,7 @@
         var datepicker = $('.datepicker');
         datepicker.datepicker();
 
-        {% if entry %}
+        {% if not entry %}
           // Fill date with todays date
           var today = new Date();
           var day = today.getDate();
