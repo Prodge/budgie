@@ -1,6 +1,7 @@
 # budgie
 A Django based Expense tracker.
 
+Uses entry of day to day expenses to provide high level summaries of spending patterns.
 
 ### Getting Started
 
