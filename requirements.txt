@@ -2,5 +2,9 @@ django==1.9.7
 django_extensions==1.6.7
 werkzeug==0.11.10
 pygal==2.2.3
-scipy==0.18.0
-numpy==1.11.1
+scipy==0.19.0
+numpy==1.12.1
+django-user-agents==0.3.0
+pyyaml==3.12
+ua-parser==0.7.3
+user-agents==1.1.0
