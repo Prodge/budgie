@@ -1,0 +1,277 @@
+/*
+ * Budgie main style
+ */
+
+/* budget status indicator */
+
+.status_circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    line-height: 100px;
+    color: #eee;
+    text-align: center;
+    margin: 10px 50px;
+}
+
+.status_box {
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    display: inline-block;
+}
+
+/* Layout */
+
+html body {
+    background-color: #F0F0F0;
+    color: #3B3C3D;
+    margin: 0;
+    padding: 0;
+    font-size: xx-large;
+}
+
+#sidebar {
+    position: fixed;
+    padding-top: 5px;
+    width: 250px;
+    height: 100%;
+    background-color: #647387;
+    color: #F0F0F0;
+}
+
+#heading {
+    margin-left: 250px;
+    padding-top: 10px;
+    padding-left: 30px;
+    width: auto;
+    position: relative;
+}
+
+#content {
+    margin-left: 250px;
+    height: 100%;
+    width: auto;
+    position: relative;
+    padding: 20px;
+    overflow: auto;
+    z-index: 1;
+}
+
+/* Navigation */
+
+#sidebar ul {
+    padding-left: 10px;
+    list-style: none;
+}
+
+#sidebar ul li a {
+    display: inline-block;
+    width: 200px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #F0F0F0;
+}
+
+#sidebar ul li:hover, #sidebar ul li.active-page {
+    background-color: #B4B9C3;
+}
+
+/* Forms */
+form {
+    width: 100%;
+}
+form table{
+    width: 100%;
+}
+
+.list_form {
+    width: 100%;
+}
+
+form input, form select{
+    width: 100%;
+    float: left;
+}
+
+form select {
+    margin-left: 5px;
+}
+
+form button {
+    float: right;
+    margin-top: 15px;
+    font-size: xx-large;
+}
+
+.list_form .button {
+    float: left;
+    margin-top: 0px;
+}
+
+input[type="checkbox"] {
+    width: 40px;
+    height: 40px;
+}
+
+/* Tables */
+table.markup-table, table.markup-table tr, table.markup-table td{
+    border-style: none;
+}
+
+form table, form table tr, form table td, form table th {
+    border-style: none;
+}
+
+table.markup-table {
+    width: 100%;
+}
+
+table.list {
+    width: 90%;
+}
+table.detail {
+    width: 40%;
+}
+table.detail td:nth-child(1) {
+    background-color: #eaeaea;
+    font-weight: bold;
+    color: #4B4C4D;
+}
+table, table tr, table td, table th {
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C8CDD2;
+}
+
+table th {
+    background-color: #e3e3e3;
+}
+
+/* Text */
+
+h2 {
+    color: #647387;
+}
+
+p {
+    color: #3B3C3D;
+
+}
+
+a:link, a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #666;
+}
+
+/* Messages */
+.messages {
+    padding: 5px;
+}
+
+.error {
+    background-color: #BF4A67;
+    color: #F0F0F0;
+}
+
+ul .error {
+    list-style: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+}
+
+.errorlist li{
+    list-style: none;
+    border-radius: 5px;
+}
+
+.success {
+    list-style: none;
+    background-color: #44B39D;
+    color: #F0F0F0;
+    padding: 10px 40px;
+    border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+    background-color: #C8CDD2;
+    border: none;
+    color: #647387;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    margin: 15px;
+}
+
+.button:hover {
+    background-color: #B4B9C3;
+}
+
+/* login Page */
+
+#login-box {
+    margin: auto;
+    width: 300px;
+    margin-top: 200px;
+    padding: 10px;
+    padding-bottom: 65px;
+    border-radius: 5px;
+    background-color: #647387;
+    color: #F0F0F0;
+}
+
+#login-box h2 {
+    color: #F0F0F0;
+    text-align: center;
+}
+
+#login-box button {
+    background-color: #C8CDD2;
+    border: none;
+    color: #647387;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+#login-box button:hover {
+    background-color: #B4B9C3;
+}
+
+#login-box form {
+    width: 250px;
+    margin: auto;
+}
+
+/* Input boxes */
+input[type="text"], textarea, input[type="password"], input[type="number"], select {
+    background-color: #C8CDD2;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    color: #333;
+    font-size: xx-large;
+}
+
+#heading hr {
+    background-color: #C8CDD2;
+    height: 1px;
+    border: 0;
+    margin-right: 30%;
+}
+
