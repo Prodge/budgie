@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'budget',
+    'assistant',
     'django_extensions',
 ]
 
