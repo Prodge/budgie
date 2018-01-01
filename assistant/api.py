@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from budget.models import Entry
 
 # @login_required
-def new_entry(request, category_id):
+def new_entry(request):
     assert request.method == 'POST', 'Request must be a POST'
 
     return JsonResponse({
