@@ -11,7 +11,7 @@ class DialogFlowBackend(object):
     Here we authenticate the user based on this value
     """
 
-    def authenticate(self, request=None, **_):
+    def authenticate(self, request=None):
         if request is not None and request.body:
             access_token = request.body.get('originalRequest', {}).get('data', {}).get('user', {}).get('accessToken', None)
             try:

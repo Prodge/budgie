@@ -4,12 +4,13 @@ from datetime import datetime
 
 from oauth2_provider.models import AccessToken
 from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from budget.models import Entry, Category
+from assistant.decorators import dialogflow_auth_required
 
-@login_required
+
+@dialogflow_auth_required
 @csrf_exempt
 def new_entry(request):
     assert request.method == 'POST', 'Request must be a POST'
