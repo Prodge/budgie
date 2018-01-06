@@ -19,6 +19,7 @@
         {% endif %}
         <form method="POST">
             {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
             <table>
                 {% if success %}
                     <th>

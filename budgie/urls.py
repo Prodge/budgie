@@ -38,4 +38,5 @@ urlpatterns = [
     url(r'^budget/', include('budget.urls')),
     url(r'^stats/', include('stats.urls')),
     url(r'^assistant/', include('assistant.urls')),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
