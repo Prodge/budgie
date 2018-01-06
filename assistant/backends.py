@@ -13,7 +13,8 @@ class DialogFlowBackend(object):
 
     def authenticate(self, request=None):
         if request is not None and request.body:
-            access_token = request.body.get('originalRequest', {}).get('data', {}).get('user', {}).get('accessToken', None)
+            body = json.loads(request.body.decode('utf-8'))
+            access_token = body.get('originalRequest', {}).get('data', {}).get('user', {}).get('accessToken', None)
             try:
                 return AccessToken.objects.get(token = access_token).user
             except AccessToken.DoesNotExist:
