@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'budget',
+    'budgie',
     'assistant',
     'django_extensions',
     'oauth2_provider',
