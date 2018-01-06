@@ -18,6 +18,8 @@ def create_google_application(apps, schema_editor):
         client_secret = 'QG9uGNUQy6lvGhSYRwkPFban14UMi3juWVw8Y5aV9pOaDdRXIWW4Q7TbuQdvcrnTgbqOn6PPgYKapbr8gIAoCOFoBWimmWjJvHhQI2y2TQBh7DoI1bZfxTVyxH3pM2Iv',
         name = 'google',
         redirect_uris = 'https://oauth-redirect.googleusercontent.com/r/budgie-bf791',
+        client_type = 'public',
+        authorization_grant_type = 'authorization-code',
     )
     application.save()
 
