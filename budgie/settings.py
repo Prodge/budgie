@@ -116,8 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
+    'assistant.backends.DialogFlowBackend',
     'oauth2_provider.backends.OAuth2Backend',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 
