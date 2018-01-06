@@ -1,7 +1,11 @@
+import json
+
 from django.contrib.auth import get_user_model
 from oauth2_provider.models import AccessToken
 
+
 User = get_user_model()
+
 
 class DialogFlowBackend(object):
     """
