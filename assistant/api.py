@@ -97,6 +97,8 @@ def expense_query(request, body={}, parameters={}, **kwargs):
             return '{} dollars'
         if cents:
             return '{} cents'
+        if dollars == 0 and cents == 0:
+            return 'nothing'
         return ''
 
     response_text = 'You spent {} {} {} {}'.format(
