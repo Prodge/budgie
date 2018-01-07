@@ -35,7 +35,7 @@ def new_entry(request, parameters=[], **kwargs):
     entry = Entry(
         label = parameters['label'],
         value = parameters['unit-currency']['amount'],
-        date = datetime.strptime(body['result']['parameters']['date'], '%Y-%m-%d'),
+        date = datetime.strptime(parameters['date'], '%Y-%m-%d'),
         flow_type = parameters['flow_type'],
         category = Category.objects.get(name__iexact=parameters['category']),
         user = request.user,
