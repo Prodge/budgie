@@ -5,6 +5,7 @@ from datetime import datetime
 from oauth2_provider.models import AccessToken
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 from budget.models import Entry, Category
 from budget.views import get_total_value
@@ -56,10 +57,10 @@ def new_entry(request, parameters=[], **kwargs):
 def get_total_expense_over_range(user, start_date, end_date, category=None):
     return get_total_value(
         Entry.objects.filter(
+            Q(category=category) if category else Q(),
             user = user,
             date__gte = start_date,
             date__lte = end_date,
-            category = category,
         )
     )
 
