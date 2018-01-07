@@ -84,7 +84,8 @@ def expense_query(request, body={}, parameters={}, **kwargs):
     total_spent = get_total_expense_over_range(
         request.user,
         start_date,
-        end_date
+        end_date,
+        category,
     )
     dollars, cents = map(int, '{0:.2f}'.format(total_spent).split('.'))
 
