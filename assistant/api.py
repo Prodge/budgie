@@ -67,7 +67,7 @@ def cast_dialogflow_date(date_string):
     return datetime.strptime(date_string, '%Y-%m-%d')
 
 
-def expense_query(request, parameters=[], **kwargs):
+def expense_query(request, body={}, parameters={}, **kwargs):
     try:
         category = Category.objects.get(name__iexact=parameters['category'])
     except Category.DoesNotExist:
