@@ -21,12 +21,13 @@ def new_entry(request):
     parameters = body['result']['parameters']
 
     entry = Entry(
-        label = parameters['category'],
+        label = parameters['label'],
         value = parameters['unit-currency']['amount'],
         date = datetime.strptime(body['result']['parameters']['date'], '%Y-%m-%d'),
         flow_type = parameters['flow_type'],
         category = Category.objects.get(name__iexact=parameters['category']),
         user = request.user,
+        description = parameters['description'],
     )
     entry.save()
 
