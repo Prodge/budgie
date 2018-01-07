@@ -84,7 +84,7 @@ def expense_query(request, body={}, parameters={}, **kwargs):
         start_date,
         end_date
     )
-    dollars, cents = map(int, '{0:.2f}'.format(total_spent))
+    dollars, cents = map(int, '{0:.2f}'.format(total_spent).split('.'))
 
     date_period_user_string = body['result']['contexts'][0]['parameters']['date-period.original']
     date_user_string = body['result']['contexts'][0]['parameters']['date.original']
