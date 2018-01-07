@@ -12,7 +12,7 @@ def dialogflow_auth_required(func):
         if not user:
             raise HttpResponseForbidden()
         request.user = user
-        func(request, *args, **kwargs)
+        return func(request, *args, **kwargs)
 
     return res
 
