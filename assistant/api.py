@@ -100,7 +100,7 @@ def expense_query(request, body={}, parameters={}, **kwargs):
 
     response_text = 'You spent {} {} {} {}'.format(
         get_dollars_and_cents_string(dollars, cents),
-        'on {}'.format(caterogy.name) if category else '',
+        'on {}'.format(category.name) if category else '',
         'over {}'.format(date_period_user_string),
         date_user_string
     )
