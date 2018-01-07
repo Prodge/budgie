@@ -84,12 +84,22 @@ def expense_query(request, body={}, parameters={}, **kwargs):
         start_date,
         end_date
     )
+    dollars, cents = map(int, '{0:.2f}'.format(total_spent))
 
     date_period_user_string = body['result']['contexts'][0]['parameters']['date-period.original']
     date_user_string = body['result']['contexts'][0]['parameters']['date.original']
 
+    def get_dollars_and_cents_string(dollars, cents):
+        if dollars and cents:
+            return '{} dollars and {} cents'.format(dollars, cents)
+        if dollars:
+            return '{} dollars'
+        if cents:
+            return '{} cents'
+        return ''
+
     response_text = 'You spent {} {} {} {}'.format(
-        total_spent,
+        get_dollars_and_cents_string(dollars, cents),
         'on {}'.format(caterogy.name) if category else '',
         'over {}'.format(date_period_user_string),
         date_user_string
