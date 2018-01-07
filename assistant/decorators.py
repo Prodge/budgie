@@ -8,8 +8,10 @@ def dialogflow_auth_required(func):
 
     @functools.wraps(func)
     def res(request, *args, **kwargs):
-        if not authenticate(request=request):
+        user = authenticate(request=request)
+        if not user:
             raise HttpResponseForbidden()
+        request.user = user
         func(request, *args, **kwargs)
 
     return res
