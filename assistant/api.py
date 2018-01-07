@@ -12,6 +12,10 @@ from assistant.decorators import dialogflow_auth_required
 
 @dialogflow_auth_required
 @csrf_exempt
+def router(request):
+    return new_entry(request)
+
+
 def new_entry(request):
     assert request.method == 'POST', 'Request must be a POST'
 
