@@ -30,7 +30,7 @@ def router(request):
     )
 
 
-def new_entry(request, parameters=[], *kwargs):
+def new_entry(request, parameters=[], **kwargs):
 
     entry = Entry(
         label = parameters['label'],
