@@ -13,16 +13,24 @@ from assistant.decorators import dialogflow_auth_required
 @dialogflow_auth_required
 @csrf_exempt
 def router(request):
-    return new_entry(request)
-
-
-def new_entry(request):
     assert request.method == 'POST', 'Request must be a POST'
 
     body = json.loads(request.body.decode('utf-8'))
-
-    raw_query = body['originalRequest']['data']['inputs'][0]['arguments'][0]['rawText']
     parameters = body['result']['parameters']
+    raw_query = body['originalRequest']['data']['inputs'][0]['arguments'][0]['rawText']
+
+    return {
+        'new_entry': new_entry,
+        'expense_query': expense_query,
+    }[body['result']['metadata']['intentName']](
+        request,
+        body=body,
+        parameters=parameters,
+        raw_query=raw_query
+    )
+
+
+def new_entry(request, parameters=[]):
 
     entry = Entry(
         label = parameters['label'],
