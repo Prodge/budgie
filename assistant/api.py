@@ -55,7 +55,7 @@ def new_entry(request, parameters=[], **kwargs):
 
 def get_total_expense_over_range(user, start_date, end_date):
     return get_total_value(
-        Entry.objects.get(
+        Entry.objects.filter(
             user = user,
             date__gte = start_date,
             date__lte = end_date,
