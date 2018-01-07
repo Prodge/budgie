@@ -50,3 +50,7 @@ def new_entry(request, parameters=[]):
         'contextOut': [],
         'source': "Budgie Money",
     })
+
+
+def expense_query(request, parameters=[]):
+    pass
