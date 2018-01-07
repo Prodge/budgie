@@ -79,7 +79,7 @@ def expense_query(request, parameters=[], **kwargs):
     if parameters.get('date-period'):
         start_date, end_date = map(cast_dialogflow_date, parameters.get('date-period').split('/'))
 
-    total_spent = get_total_expenses_over_range(
+    total_spent = get_total_expense_over_range(
         request.user,
         start_date,
         end_date
