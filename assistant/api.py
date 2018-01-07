@@ -85,8 +85,8 @@ def expense_query(request, body={}, parameters={}, **kwargs):
         end_date
     )
 
-    date_period_user_string = body['result']['contexts'][0]['date-period.original']
-    date_user_string = body['result']['contexts'][0]['date.original']
+    date_period_user_string = body['result']['contexts'][0]['parameters']['date-period.original']
+    date_user_string = body['result']['contexts'][0]['parameters']['date.original']
 
     response_text = 'You spent {} {} {} {}'.format(
         total_spent,
